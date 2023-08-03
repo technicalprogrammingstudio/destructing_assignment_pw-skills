@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reverse String with Delay</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 5px 10px;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+
+        #output {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Reverse String with Delay</h1>
+        <input type="text" id="inputString" placeholder="Enter a string">
+        <button onclick="reverseWithDelay()">Reverse</button>
+        <div id="output"></div>
+    </div>
+
+
+
+
+
+
+    <script>
+        function reverseWithDelay() {
+            const inputElement = document.getElementById("inputString");
+            const outputElement = document.getElementById("output");
+
+            const input = inputElement.value;
+            if (input.trim() === "") {
+                outputElement.innerText = "Please enter a valid string.";
+                return;
+            }
+
+            outputElement.innerText = "Reversing...";
+            setTimeout(() => {
+                const reversedString = input.split("").reverse().join("");
+                outputElement.innerText = `Reversed string: ${reversedString}`;
+            }, 2000);
+        }
+
+    </script>
+</body>
+
+</html>
