@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Profile URL Validator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input {
+            padding: 5px 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>LinkedIn Profile URL Validator</h1>
+        <form onsubmit="return validateLinkedInURL()">
+            <label for="urlInput">Enter LinkedIn Profile URL:</label>
+            <input type="text" id="urlInput" placeholder="Enter URL here">
+            <button type="submit">Validate</button>
+        </form>
+        <div id="output"></div>
+    </div>
+    <script>
+        function validateLinkedInURL() {
+            event.preventDefault();
+            const urlInput = document.getElementById("urlInput").value.trim();
+
+            // Regular expression to match valid LinkedIn profile URLs
+            const urlPattern = /^https:\/\/www.linkedin.com\/in\/[a-zA-Z0-9_-]{5,30}[a-zA-Z0-9]$/;
+
+            const outputElement = document.getElementById("output");
+            if (urlPattern.test(urlInput)) {
+                outputElement.innerText = "Valid LinkedIn Profile URL.";
+            } else {
+                outputElement.innerText = "Invalid LinkedIn Profile URL.";
+            }
+
+            return false;
+        }
+
+    </script>
+</body>
+
+</html>
