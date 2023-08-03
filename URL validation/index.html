@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valid URL Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        textarea {
+            width: 80%;
+            height: 100px;
+            padding: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Valid URL Checker</h1>
+        <form onsubmit="return checkURLs()">
+            <label for="urlInput">Enter URL(s):</label>
+            <textarea id="urlInput" placeholder="Enter URLs here"></textarea>
+            <button type="submit">Check</button>
+        </form>
+        <div id="output"></div>
+    </div>
+    <script>
+        function checkURLs() {
+            event.preventDefault();
+            const urlInput = document.getElementById("urlInput").value;
+            const urls = urlInput.split("\n");
+
+            // Regular expression to match valid URLs
+            const urlPattern = /^(http:\/\/|https:\/\/)[a-zA-Z0-9!@#$%^&*()_+,-./:;'<=>?@[\\\]^_`{|}~]+[a-zA-Z]+$/;
+
+            const validURLs = [];
+            for (const url of urls) {
+                if (urlPattern.test(url)) {
+                    validURLs.push(url);
+                }
+            }
+
+            const outputElement = document.getElementById("output");
+            if (validURLs.length > 0) {
+                outputElement.innerText = "Valid URLs:\n" + validURLs.join("\n");
+            } else {
+                outputElement.innerText = "No valid URLs found.";
+            }
+
+            return false;
+        }
+
+
+    </script>
+</body>
+
+</html>
