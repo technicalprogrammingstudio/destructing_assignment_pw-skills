@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        textarea {
+            width: 80%;
+            height: 100px;
+            padding: 5px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 5px 10px;
+            font-size: 16px;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Book Filter</h1>
+        <label for="bookList">Enter books (format: "Title, Author, Year; Title, Author, Year; ..."):</label>
+        <textarea id="bookList" placeholder="Enter books here"></textarea>
+        <button onclick="filterAndDisplay()">Filter Books</button>
+        <div id="output"></div>
+    </div>
+    <script>
+        function filterAndDisplay() {
+            const bookListInput = document.getElementById("bookList");
+            const outputElement = document.getElementById("output");
+
+            const bookList = bookListInput.value.split(";").map((book) => book.trim());
+
+            const filteredBooks = bookList.filter((book) => {
+                const [title, author, year] = book.split(",").map((item) => item.trim());
+                return parseInt(year) >= 2010;
+            });
+
+            const formattedFilteredBooks = filteredBooks.map((book) => {
+                const [title, author, year] = book.split(",").map((item) => item.trim());
+                const capitalizedAuthor = author.toUpperCase();
+                return `${title} - ${capitalizedAuthor} (${year})`;
+            });
+
+            outputElement.innerText = formattedFilteredBooks.join("\n");
+        }
+
+    </script>
+</body>
+
+</html>
