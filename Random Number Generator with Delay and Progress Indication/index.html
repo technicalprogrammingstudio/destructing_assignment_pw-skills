@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+
+        #output {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Random Number Generator</h1>
+        <button onclick="startRandomNumberGeneration()">Start Generating</button>
+        <div id="output"></div>
+    </div>
+
+
+    <script>
+        let delayInSeconds = 3;
+        let remainingTime = delayInSeconds;
+        let countdownInterval;
+
+        function startRandomNumberGeneration() {
+            const outputElement = document.getElementById("output");
+            outputElement.innerText = `Generating random number in ${delayInSeconds} seconds...`;
+
+            countdownInterval = setInterval(updateCountdown, 1000);
+            setTimeout(generateRandomNumber, delayInSeconds * 1000);
+        }
+
+        function updateCountdown() {
+            const outputElement = document.getElementById("output");
+            remainingTime--;
+
+            if (remainingTime > 0) {
+                outputElement.innerText = `Generating random number in ${remainingTime} seconds...`;
+            } else {
+                clearInterval(countdownInterval);
+                outputElement.innerText = "Generating random number...";
+            }
+        }
+
+        function generateRandomNumber() {
+            clearInterval(countdownInterval);
+            const outputElement = document.getElementById("output");
+            const randomNumber = Math.floor(Math.random() * 100) + 1;
+            outputElement.innerText = `Generated random number: ${randomNumber}`;
+        }
+
+    </script>
+</body>
+
+</html>
